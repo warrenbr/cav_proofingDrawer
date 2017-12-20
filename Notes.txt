@@ -1,0 +1,32 @@
+WebBrowserStartup:
+
+I also had trouble with this. On the Raspberry Pi3 running Raspbian this is what I did:
+
+Create a startup shell script in your root directory (I named mine "launch"):
+sudo leafpad launch.sh
+
+Save the file
+Edit the LXDE-pi autostart file
+sudo leafpad /home/pi/.config/lxsession/LXDE-pi/autostart
+
+Add this to the bottom of that file
+./launch.sh
+
+reboot
+
+
+MakeScreenWork:
+
+sudo nano /boot/config.txt
+add to bottom:
+
+# Config - Kuman 7" Touchscreen
+hdmi_cvt 800 480 60 6 0 0 0
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+max_usb_current=1
+
+Start kweb:
+
+kweb3 -KJ 192.168.1.119:5000
