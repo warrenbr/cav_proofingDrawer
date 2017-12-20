@@ -1,0 +1,183 @@
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+html {
+    background: #555;
+    color: #222;
+    font: Montserrat;
+    line-height: 1.4;
+}
+
+body {
+    background: #555;
+}
+
+.content {
+    max-width: 800px;
+    max-height: 480px;
+    margin: auto;
+    background: white;
+    padding: none;
+}
+
+
+.rectangle {
+    border-radius: 25px;
+    width:70%;
+    background:#A7A9AC;
+	margin-top: 40px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	align-self: center;
+}
+
+.buttonText {
+	padding: 5%;
+	text-align: center;
+	font-size: 50pt;
+	font-family: Montserrat;
+	color: #222;
+}
+
+#buttonGroup {
+	margin-top: 10%;
+	margin-bottom: auto;
+}
+
+.proofingDials{
+    background-color: #A7A9AC; 
+    width: 316px;
+    height: 316px;
+    padding: 100px;
+    border: 100px;
+    border-radius: 50%;
+    margin-left: auto;
+	margin-right: auto;
+}
+
+#timeResetButton {
+	background-color: #b7b;
+	width: 100px;
+	height: 100px;
+	border: 30px;
+	border-radius: 50%;
+	color: black;
+	margin-top: 20%;
+	margin-left: 80%;
+}
+
+#tempUnitsButton {
+	background-color: #b7b;
+	width: 100px;
+	height: 100px;
+	border: 30px;
+	border-radius: 50%;
+	color: black;
+	margin-top: 20%;
+	margin-left: 80%;
+}
+
+#actualTemp {
+	background-color: #b7b;
+	width: 100px;
+	height: 100px;
+	border: 30px;
+	border-radius: 50%;
+	color: black;
+	position: absolute;
+	top: 10%;
+	left: 59%;
+	font-size: 20pt;
+}
+
+#tempPlus {
+	font-size: 70pt;
+	color: black;
+	position: absolute;
+	top: 12%;
+	left: 32%;
+}
+
+#tempMinus {
+	font-size: 80pt;
+	color: black;
+	position: absolute;
+	top: 60%;
+	left: 35%;
+}
+
+.dialTitle {
+	color: black;
+	text-align: left;
+	font-size: 35pt;
+	font-family: Montserrat;
+	margin-bottom: -5%;
+	margin-left: 5%;
+}
+
+.dialText {
+	color: black;
+	margin-left: -25%;
+	margin-top: 5%;
+	font-size: 50pt;
+}
+
+.start {
+    position: absolute;
+    left: 600px;
+	top: 150px;
+}
+
+.stop {
+    position: absolute;
+    left: 100px;
+    top: 150px;
+}
+
+#backarrow {
+	position: absolute;
+	top: 80%;
+	left: 2%;
+}
+
+#lightbulb {
+	position: absolute;
+	left: 46%;
+}
+
+/* #circle {
+      width: 316px;
+      height: 316px;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;
+      background: #A7A9AC;
+    }*/
+    
+#circle {
+    background-color: #A7A9AC;
+    border: 200px;
+    color: black;
+    height: 316px;
+    width: 316px;
+    border-radius: 50%;
+    padding: none;
+    text-align: center;
+            /*
+            
+            height: 350px;
+            width: 216px;
+            padding-top: 166px;
+            padding-left: 100px;
+            padding-right: 200px;
+            */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50pt;
+    margin: 4px 2px;
+    
+}
+
