@@ -3,8 +3,8 @@
  */
 
 // the maximum and minimum tempuratures this thing will support
-var rangeMax = 90; //fahrenheit, not celcius
-var rangeMin = 70; //fahrenheit, not celcius
+var rangeMax = 90; //fahrenheit, of course
+var rangeMin = 70; //fahrenheit, of course
 
 // the seconds counter for the timer (initialized at zero, seems sensible)
 var seconds = 0;
@@ -34,21 +34,17 @@ $(document).ready(function() {
 	//make the temp plus button turn up the temp (as long as it is within the appropriate range)
 	$("#tempPlus").click(function() {
 
-		//TODO: do something about Celcius. Probably check which is set (maybe make an instance variable?)
-
 		//Extract the current set tempurature from the document (and trim off the units)
 		setTemp = $("#setTemp").html();
 		setTemp = Number(setTemp.substring(0,4));
 		if (setTemp < rangeMax) {
 			$("#setTemp").text((setTemp + 1) + ".0°F");
 		}
-	
+
 	});
 
 	//make the temp minus button turn down the temp (as long as it is within the appropriate range)
 	$("#tempMinus").click(function() {
-
-		//TODO: do something about Celcius. Probably check which is set (maybe make an instance variable?)
 
 		//Extract the current set tempurature from the document (and trim off the units)
 		setTemp = $("#setTemp").html();
@@ -61,8 +57,7 @@ $(document).ready(function() {
 
 	$("#lightbulb").click(function() {
 
-		//TODO: need to set timer when light is on
-		//TODO: also need to AJAX a route to tell the real life lightbulb to turn on/off
+		//TODO: need to AJAX a route to tell the real life lightbulb to turn on/off
 		
 		//if the light is off, turn on the light
 		if ($("#lightbulb").attr("src") == "../img/lightbulb-gray.svg") {
@@ -76,11 +71,12 @@ $(document).ready(function() {
 	});
 
 	function startTime() {
-		if (!intervalSet) {
+		if (!intervalSet) { //make sure the interval isn't already running
 			setInterval(setTime, 1000);
 			intervalSet = true;
 		}
 
+		//runs on 1 sec interval, increments the seconds and updates the document
 		function setTime() {
 			if (!paused) {
 				++seconds;
@@ -89,6 +85,7 @@ $(document).ready(function() {
 			}
 		}
 
+		//pads val with a zero if it's a single digit (looks better)
 		function pad(val) {
 			var valString = val + "";
 			if (valString.length < 2) {
@@ -97,7 +94,7 @@ $(document).ready(function() {
 				return valString;
 			}
 		}
-	}
+	} //end starTime() function
 
 	$("#timeResetButton").click(function() {
 		seconds = 0;
