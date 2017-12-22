@@ -15,23 +15,6 @@ var intervalSet = false;
 
 $(document).ready(function() {
 	
-	//make the proofing button load the proofing page
-	$("#proofing-button").click(function() {
-		window.location.href='ProofingPage';
-		return false;
-	});
-
-	//make the recipes button load the recipes page
-	$("#recipes-button").click(function() {
-		window.location.href='recipes.html';
-		return false;
-	});
-
-	//make the back button go back a page
-	$("#backarrow").click(function() {
-		window.history.back();
-	});
-	
 	//make the temp plus button turn up the temp (as long as it is within the appropriate range)
 	$("#tempPlus").click(function() {
 
@@ -42,6 +25,8 @@ $(document).ready(function() {
 			$("#setTemp").text((setTemp + 1) + ".0°F");
 		}
 
+		//TODO: Make ajax call to turn up the temp on the Pi
+		
 	});
 
 	//make the temp minus button turn down the temp (as long as it is within the appropriate range)
@@ -53,6 +38,8 @@ $(document).ready(function() {
 		if (setTemp > rangeMin) {
 			$("#setTemp").text((setTemp - 1) + ".0°F");
 		}
+
+		//TODO: Make ajax call to turn down the temp on the Pi
 	
 	});
 
