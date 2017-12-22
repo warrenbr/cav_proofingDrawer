@@ -3,7 +3,7 @@
  */
 
 // the maximum and minimum tempuratures this thing will support
-var rangeMax = 90; //fahrenheit, of course
+var rangeMax = 110; //fahrenheit, of course
 var rangeMin = 70; //fahrenheit, of course
 
 // the seconds counter for the timer (initialized at zero, seems sensible)
@@ -14,6 +14,7 @@ var paused = true;
 var intervalSet = false;
 
 $(document).ready(function() {
+	
 	//make the proofing button load the proofing page
 	$("#proofing-button").click(function() {
 		window.location.href='proofing.html';
@@ -81,7 +82,8 @@ $(document).ready(function() {
 			if (!paused) {
 				++seconds;
 				$("#seconds").html(pad(seconds % 60));
-				$("#minutes").html(pad(Math.floor(seconds / 60)));
+				$("#minutes").html(pad(Math.floor((seconds / 60) % 60)));
+				$("#hours").html(pad(Math.floor(seconds / 60 / 60)));
 			}
 		}
 

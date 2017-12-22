@@ -67,6 +67,7 @@ body {
 	color: black;
 	margin-top: 20%;
 	margin-left: 80%;
+	font-size: 20pt;
 }
 
 #humidityButton {
@@ -129,6 +130,13 @@ body {
 .dialText {
 	color: black;
 	margin-left: -25%;
+	margin-top: 5%;
+	font-size: 50pt;
+}
+
+#timeText {
+	color: black;
+	margin-left: -60%;
 	margin-top: 5%;
 	font-size: 50pt;
 }
