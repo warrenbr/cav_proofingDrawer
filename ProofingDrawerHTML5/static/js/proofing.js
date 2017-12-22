@@ -17,7 +17,7 @@ $(document).ready(function() {
 	
 	//make the proofing button load the proofing page
 	$("#proofing-button").click(function() {
-		window.location.href='proofing.html';
+		window.location.href='ProofingPage';
 		return false;
 	});
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
 	$("#backarrow").click(function() {
 		window.history.back();
 	});
-
+	
 	//make the temp plus button turn up the temp (as long as it is within the appropriate range)
 	$("#tempPlus").click(function() {
 
@@ -57,23 +57,26 @@ $(document).ready(function() {
 	});
 
 	$("#lightbulb").click(function() {
-
-		//TODO: need to AJAX a route to tell the real life lightbulb to turn on/off
 		
 		//if the light is off, turn on the light
-		if ($("#lightbulb").attr("src") == "../img/lightbulb-gray.svg") {
-			$("#lightbulb").attr("src", "../img/lightbulb-yellow.svg");
+		if ($("#lightbulb").attr("src") == "../static/img/lightbulb-gray.svg") {
+			$("#lightbulb").attr("src", "../static/img/lightbulb-yellow.svg");
 			paused = false;
 			startTime();
+			//send the ajax post request to turn the real light bulb on
+			$.post("/ProofingPage/proofOn");			
 		} else { //it's on, so turn it off
-			$("#lightbulb").attr("src", "../img/lightbulb-gray.svg");
+			$("#lightbulb").attr("src", "../static/img/lightbulb-gray.svg");
 			paused = true;
+			//send the ajax post request to turn the real light bulb off
+			$.post("/ProofingPage/proofOff");
 		}
 	});
-
+	
 	function startTime() {
 		if (!intervalSet) { //make sure the interval isn't already running
 			setInterval(setTime, 1000);
+			setInterval(updateTempHumid, 3000);
 			intervalSet = true;
 		}
 
@@ -87,6 +90,17 @@ $(document).ready(function() {
 			}
 		}
 
+		//function that fetches the tempurature and humidity from server via ajax and updates it in the DOM
+		//   (this is called in an interval that begins when the setTime interval begins)
+		function updateTempHumid() {
+			$.get("ProofingPage/getTemp", function(data) {
+				$("#actualTemp").html(data + "°F");
+			});
+			$.get("ProofingPage/getHumid", function(data) {
+				$("#humidity").html(data + "%");
+			});
+		}
+		
 		//pads val with a zero if it's a single digit (looks better)
 		function pad(val) {
 			var valString = val + "";
@@ -96,12 +110,15 @@ $(document).ready(function() {
 				return valString;
 			}
 		}
-	} //end starTime() function
+	} //end startTime() function
 
+	//function to reset the timer when the reset button is clicked
 	$("#timeResetButton").click(function() {
 		seconds = 0;
+		$("#hours").html("00");
 		$("#minutes").html("00");
 		$("#seconds").html("00");
 	});
+
 	
 }); //end of document ready function
