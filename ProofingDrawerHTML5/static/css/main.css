@@ -157,14 +157,14 @@ body {
 
 #backarrow {
 	position: absolute;
-	top: 78%;
 	left: 2%;
+	bottom: 0%;
 }
 
 #lightbulb {
 	position: absolute;
 	left: 44%;
-	top: 76%;
+	bottom: 0%;
 }
 
 /* #circle {
