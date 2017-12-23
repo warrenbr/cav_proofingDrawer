@@ -42,6 +42,10 @@ body {
 	color: #222;
 }
 
+.row {
+	max-width: 800px;
+}
+
 #buttonGroup {
 	margin-top: 10%;
 	margin-bottom: auto;
@@ -77,8 +81,6 @@ body {
 	border: 30px;
 	border-radius: 50%;
 	color: black;
-	/* margin-top: 20%; */
-	/* margin-left: 80%; */
 	position: absolute;
 	top: 76%;
 	left: 59%;
@@ -155,13 +157,14 @@ body {
 
 #backarrow {
 	position: absolute;
-	top: 80%;
+	top: 78%;
 	left: 2%;
 }
 
 #lightbulb {
 	position: absolute;
-	left: 46%;
+	left: 44%;
+	top: 76%;
 }
 
 /* #circle {

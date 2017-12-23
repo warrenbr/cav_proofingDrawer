@@ -18,28 +18,28 @@ $(document).ready(function() {
 	//make the temp plus button turn up the temp (as long as it is within the appropriate range)
 	$("#tempPlus").click(function() {
 
-		//Extract the current set tempurature from the document (and trim off the units)
+		//Extract the current set tempurature from the document (and trim off the units) so we can test if it's in range
 		setTemp = $("#setTemp").html();
-		setTemp = Number(setTemp.substring(0,4));
+		setTemp = Number(setTemp.substring(0,4)); 
 		if (setTemp < rangeMax) {
-			$("#setTemp").text((setTemp + 1) + ".0°F");
+			$.get("ProofingPage/setTemp/plus", function(data) {
+				$("#setTemp").text(data  + ".0°F");
+			});
 		}
-
-		//TODO: Make ajax call to turn up the temp on the Pi
 		
 	});
 
 	//make the temp minus button turn down the temp (as long as it is within the appropriate range)
 	$("#tempMinus").click(function() {
 
-		//Extract the current set tempurature from the document (and trim off the units)
+		//Extract the current set tempurature from the document (and trim off the units) so we can test if it's in range
 		setTemp = $("#setTemp").html();
 		setTemp = Number(setTemp.substring(0,4));
 		if (setTemp > rangeMin) {
-			$("#setTemp").text((setTemp - 1) + ".0°F");
+			$.get("ProofingPage/setTemp/minus", function(data) {
+				$("#setTemp").html(data + ".0°F");
+			});
 		}
-
-		//TODO: Make ajax call to turn down the temp on the Pi
 	
 	});
 
@@ -80,12 +80,14 @@ $(document).ready(function() {
 		//function that fetches the tempurature and humidity from server via ajax and updates it in the DOM
 		//   (this is called in an interval that begins when the setTime interval begins)
 		function updateTempHumid() {
-			$.get("ProofingPage/getTemp", function(data) {
-				$("#actualTemp").html(data + "°F");
-			});
-			$.get("ProofingPage/getHumid", function(data) {
-				$("#humidity").html(data + "%");
-			});
+			if (!paused) {
+				$.get("ProofingPage/getTemp", function(data) {
+					$("#actualTemp").html(data + "°F");
+				});
+				$.get("ProofingPage/getHumid", function(data) {
+					$("#humidity").html(data + "%");
+				});
+			}
 		}
 		
 		//pads val with a zero if it's a single digit (looks better)

@@ -4,10 +4,6 @@ from ProofingDrawer_01 import *
 from threading import Thread
 
 app = Flask(__name__)
-proofLoopOff = True
-
-class HTMLglobals():
-    proofLoopOff = True
 
 
 @app.route('/')
@@ -21,20 +17,20 @@ def proofingPage():
     
 @app.route('/ProofingPage/proofOn', methods=['POST'])
 def proofOn():
-    ProofingDrawer.loopOn = True
-    if(HTMLglobals.proofLoopOff):
-        HTMLglobals.proofLoopOff = False
+    if(PDGlobals.proofLoopOff):
+        PDGlobals.proofLoopOff = False
         t = Thread(target=startDrawer)
         t.start() 
     return("drawer START!")
     
+    
 @app.route('/ProofingPage/proofOff', methods=['POST'])
 def proofOff():
-    ProofingDrawer.loopOn = False
-    ProofingDrawer(False)
-    HTMLglobals.proofLoopOff = True
+    PDGlobals.proofLoopOff = True
+    ProofingDrawer()
     return("drawer STOP!")
 
+#sending temperature to pi
 @app.route('/ProofingPage/getTemp', methods=['GET'])
 def getTemp():
     temp = str(PDGlobals.temperature)
@@ -45,9 +41,18 @@ def getHumid():
     humid = str(PDGlobals.humidity)
     return(humid)
     
+#getting desired temperature from pi
+@app.route('/ProofingPage/setTemp/<direction>', methods=['GET'])
+def setTemp(direction):
+    if(direction == 'plus'):
+        PDGlobals.desiredTemp += 1
+    elif(direction == 'minus'):
+        PDGlobals.desiredTemp -= 1
+    return(str(PDGlobals.desiredTemp))
+    
     #here to be a thread target
 def startDrawer():
-   ProofingDrawer(True)
+   ProofingDrawer()
 
 if __name__ == '__main__':
   app.run(debug=True, host='10.0.0.13')
