@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from ProofingDrawer_01 import *
-# commented out for testing
 from threading import Thread
+import json
+import io
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -50,7 +50,45 @@ def setTemp(direction):
         PDGlobals.desiredTemp -= 1
     return(str(PDGlobals.desiredTemp))
     
-    #here to be a thread target
+#----Recipie stuff----------
+
+def getDBItems(Thing):
+    fileLocation = 'breadData/breadData.json'
+    file = open(fileLocation)
+    fileString = file.read()
+    data = json.loads(fileString)
+    sendList  = []
+    sendName = ''
+
+    if(Thing == 'bName'):
+        for breadN in data:
+            sendList.append([breadN, data[breadN]["Name"]])
+        file.close()
+        return(sendList)
+    else:
+        breadDict = data[Thing]
+        
+        sendList = breadDict["ingredients"]
+        notes = breadDict["notes"]
+        name = breadDict["Name"]
+        file.close()
+
+        return(name, sendList, notes)
+
+        
+@app.route('/RecipesPage')
+def initRecipe():
+    breadList = getDBItems("bName")
+    return render_template('recipes.html', breadList = breadList)
+    
+@app.route('/RecipesPage/<bread>')
+def getIngredents(bread):
+    breadName, ingredientList, notes = getDBItems(bread)
+    return render_template('onebread.html', breadName = breadName, ingredientList = ingredientList,
+                            notes = notes)
+    
+
+#here to be a thread target
 def startDrawer():
    ProofingDrawer()
 

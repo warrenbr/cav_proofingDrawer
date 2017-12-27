@@ -12,26 +12,29 @@
 		<script src="../static/js/navigation.js"></script>
     </head>
     <body>
-		<h1 class="recipesHeading">RECIPES</h1>
+		<h1 class="recipesHeading">Name: {{ breadName }}</h1>
+		<h1 class="recipesHeading">NUMBER OF LBS. TO MAKE:</h1>
+		<input type="text">
 		<div class="row">
 			<table class="table table-striped" id="bread-table">
 				<tr>
-					<th>Bread Name</th>
-					<th></th>
+					<th>INGREDIENT</th>
+					<th>AMOUNT (lbs.)</th>
 				</tr>
-
-				{% for bread in breadList %}
+				{% for ingredient in ingredientList %}
 				<tr>
-					<td><a href="RecipesPage/{{bread[0]}}">{{bread[1]}}</a></td>
-					<td><a href="RecipesPage/{{bread[0]}}/edit"><button class="btn btn-edit">EDIT</button></a></td>
+					<td>{{ ingredient[0] }}</td>
+					<td>{{ ingredient[1] }}</td>
 				</tr>
 				{% endfor %}
-				
-				<tr>
-					<td><br><br></td>
-					<td><button class="btn btn-danger">ADD NEW</button></td>
-				</tr>
 			</table>
+			<h1 class="recipesHeading">NOTES:</h1>
+			<ul>
+				{% for note in notes %}
+				<li>{{ note }}</li>
+				{% endfor %}
+			</ul>
+			<br><br><br>
 		</div>
 		<img src="../static/img/backarrow.svg" id="backarrow">
     </body>

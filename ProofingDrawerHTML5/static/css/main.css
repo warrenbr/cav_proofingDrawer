@@ -150,14 +150,14 @@ body {
 }
 
 .stop {
-    position: absolute;
+    position: ;
     left: 100px;
     top: 150px;
 }
 
 #backarrow {
-	position: absolute;
-	left: 2%;
+	position: fixed;
+	left: auto;
 	bottom: 0%;
 }
 
@@ -167,36 +167,21 @@ body {
 	bottom: 0%;
 }
 
-/* #circle {
-      width: 316px;
-      height: 316px;
-      -webkit-border-radius: 100%;
-      -moz-border-radius: 100%;
-      border-radius: 100%;
-      background: #A7A9AC;
-    }*/
-    
-#circle {
-    background-color: #A7A9AC;
-    border: 200px;
-    color: black;
-    height: 316px;
-    width: 316px;
-    border-radius: 50%;
-    padding: none;
-    text-align: center;
-            /*
-            
-            height: 350px;
-            width: 216px;
-            padding-top: 166px;
-            padding-left: 100px;
-            padding-right: 200px;
-            */
-    text-decoration: none;
-    display: inline-block;
-    font-size: 50pt;
-    margin: 4px 2px;
-    
+.recipesHeading {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
+
+#bread-table {
+	margin-left: 1%;
+	font-size: 20pt;
+	max-width: 800px;
+}
+
+.btn.btn-edit {
+	background-color: #b7b;
+	color: #000;
+}
+    
 

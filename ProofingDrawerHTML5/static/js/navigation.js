@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 	//make the recipes button load the recipes page
 	$("#recipes-button").click(function() {
-		window.location.href='recipes.html';
+		window.location.href='RecipesPage';
 		return false;
 	});
 

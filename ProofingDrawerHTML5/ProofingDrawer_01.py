@@ -53,9 +53,8 @@ class ProofingDrawer(object):
             try:
                 temperature = self.get_temperature_humidity()[1]
             except:
-                temperature = 0
                 print("Temp not read, reaturned: {}f".format(temperature))
-            print("desired temp is {}f" .format(PDGlobals.desiredTemp))
+                temperature = PDGlobals.temperature
             if temperature < PDGlobals.desiredTemp - 1 and PDGlobals.proofLoopOff == False:
                 self.turn_on_light()
                 print("light ON with: {}f".format(temperature))

@@ -1,0 +1,35 @@
+{
+"1": {
+    "Name": "Chunky",
+    "ingredients":[
+        ["Water", 0.65],
+        ["Levain", 0.1],
+        ["Honey" , 0.1],
+        ["Flour 55", 0.5],
+        ["Turkey Flour", 0.5],
+        ["Potato Flour", 0.5],
+        ["Salt", 0.1],
+        ["Yeast", 0.5]
+        ],
+        
+    "notes":
+        ["Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,"]
+    },
+
+"2": {
+    "Name": "Cibatta, Foc",
+    "ingredients":[
+        ["Water", 4.13],
+        ["Levain", 2.09],
+        ["Flour 55", 5.23],
+        ["Salt", 0.1],
+        ["yeast", 0.05]
+        ],
+        
+    "notes":
+        ["add extra time to kneeing when wet",
+        "add 2 tps per 2.5K feet altitude"]
+            
+    }
+}
