@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -8,14 +7,16 @@ html {
     color: #222;
     font: Montserrat;
     line-height: 1.4;
+	max-width: 770px;
 }
 
 body {
     background: #555;
+	max-width: 770px;
 }
 
 .content {
-    max-width: 800px;
+    max-width: 770px;
     max-height: 480px;
     margin: auto;
     background: white;
@@ -44,10 +45,11 @@ body {
 
 .row {
 	max-width: 800px;
+	margin-left: 0px;
 }
 
 #buttonGroup {
-	margin-top: 10%;
+	margin-top: 5%;
 	margin-bottom: auto;
 }
 
@@ -143,18 +145,6 @@ body {
 	font-size: 50pt;
 }
 
-.start {
-    position: absolute;
-    left: 600px;
-	top: 150px;
-}
-
-.stop {
-    position: ;
-    left: 100px;
-    top: 150px;
-}
-
 #backarrow {
 	position: fixed;
 	left: auto;
@@ -174,14 +164,44 @@ body {
 }
 
 #bread-table {
-	margin-left: 1%;
 	font-size: 20pt;
-	max-width: 800px;
+	max-width: 770px;
 }
 
 .btn.btn-edit {
 	background-color: #b7b;
 	color: #000;
 }
-    
 
+.btn.btn-submit {
+	background-color: #b7b;
+	color: #000;
+	font-size: 18pt;
+}
+
+.form-control {
+	font-size: 20pt;
+}
+
+.form-control.lbs-input {
+	width: 40%;
+}
+
+.hiding {
+	display: none;
+}
+
+.btn-danger {
+	color: #000;
+	font-size: 20pt;
+}
+
+.btn-success {
+	color: #000;
+	font-size: 20pt;
+}
+
+#notes-section {
+	max-width: 770px;
+	padding: 12px;
+}

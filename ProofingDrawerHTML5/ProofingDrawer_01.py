@@ -55,11 +55,11 @@ class ProofingDrawer(object):
             except:
                 print("Temp not read, reaturned: {}f".format(temperature))
                 temperature = PDGlobals.temperature
-            if temperature < PDGlobals.desiredTemp - 1 and PDGlobals.proofLoopOff == False:
+            if temperature < PDGlobals.desiredTemp - 0.9 and PDGlobals.proofLoopOff == False:
                 self.turn_on_light()
                 print("light ON with: {}f".format(temperature))
 
-            elif temperature > PDGlobals.desiredTemp + 1:
+            elif temperature > PDGlobals.desiredTemp + 0.9:
                 self.turn_off_light()
                 print("light OFF with: {}f".format(temperature))
                 

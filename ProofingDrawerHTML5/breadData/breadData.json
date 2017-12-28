@@ -1,6 +1,7 @@
 {
 "1": {
     "Name": "Chunky",
+    "breadYield": 1.7,
     "ingredients":[
         ["Water", 0.65],
         ["Levain", 0.1],
@@ -19,6 +20,7 @@
 
 "2": {
     "Name": "Cibatta, Foc",
+    "breadYield": 11.6,
     "ingredients":[
         ["Water", 4.13],
         ["Levain", 2.09],
@@ -30,6 +32,38 @@
     "notes":
         ["add extra time to kneeing when wet",
         "add 2 tps per 2.5K feet altitude"]
+            
+    },
+    
+"3": {
+    "Name": "Country Sourdough",
+    "breadYield": 2,
+    "ingredients":[
+        ["Water", 0.85],
+        ["Levain", 0.6],
+        ["All Purpose Flour", 0.65],
+        ["Bread Flour", 0.65],
+        ["Whole Wheat Flour", 0.25],
+        ["Salt", 0.05]
+        ],
+        
+    "notes":
+        ["1. Weigh out the water and levain and add it to a large mixing bowl",
+        "2. Weigh out the flours and salt and add it on top of the wet ingredients",
+        "3. Mix for 6 minutes, until all ingredients are completely incorporated",
+        "4. Knead for 10-15 minutes, or until the dough starts to feel tight while kneading",
+        "5. Place dough in a greased bowl and cover, leave at room temperature for 60 minutes.",
+        "6. Fold dough over itself in a 3-part fold, two times total, once longitudinally and once laterally",
+        "7. Wait 30 minutes, then repeat step 6 ",
+        "8. Wait 30 more minutes, then repeat step 6 again.",
+        "9. After another 30 minutes, punch dough down and form into a ball by grabbing the edges and folding into the middle until you have a ball with a semi-tight skin ",
+        "10. Leave to rest for 15-30 minutes, then perform the final shape buy rolling the ball between your hands, trapping a small amount of dough between your hand and the table as you roll. If done correctly, the dough ball will become a firm and tight ball of dough. (Be careful not to overtighten, as the skin will break and the bread will crack as it cooks)",
+        "11. Move the dough ball to a flat surface that can be placed in the fridge, and cover with plastic wrap before resting overnight for 8 hours in the refrigerator",
+        "12. When ready to bake, place a large pan of water on the bottom rack of the oven and preheat the oven to 445 degrees",
+        "13. Make 3 shallow cuts across the top of the dough before placing in the oven. (I recommend a pizza stone, or if you can't find one, a large piece of unglazed slate tile works pretty well)",
+        "14. Bake for ~30 minutes, or until the temperature of the bread reaches 190 degrees, replacing the water as needed",
+        "15. Continue to bake until bread reaches desired color ",
+        "16. Enjoy fresh or cool completely before storing "]
             
     }
 }

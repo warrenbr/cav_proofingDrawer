@@ -3,12 +3,17 @@ from ProofingDrawer_01 import *
 from threading import Thread
 import json
 import io
+import subprocess
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    #gets current IP address and sends it to web server
+    systemIP = (subprocess.check_output(["hostname", "-I"]))
+    systemIP = str(systemIP).split(" ")[0][2:]
+    systemIP = systemIP + ":5000"
+    return render_template('index.html', systemIP = systemIP)
 
 #-----Proofing stuff----------
 @app.route('/ProofingPage')
@@ -58,7 +63,6 @@ def getDBItems(Thing):
     fileString = file.read()
     data = json.loads(fileString)
     sendList  = []
-    sendName = ''
 
     if(Thing == 'bName'):
         for breadN in data:
@@ -68,12 +72,14 @@ def getDBItems(Thing):
     else:
         breadDict = data[Thing]
         
+        name = breadDict["Name"]
+        breadYield = breadDict["breadYield"]
         sendList = breadDict["ingredients"]
         notes = breadDict["notes"]
-        name = breadDict["Name"]
+        
         file.close()
 
-        return(name, sendList, notes)
+        return(name, breadYield, sendList, notes)
 
         
 @app.route('/RecipesPage')
@@ -83,9 +89,9 @@ def initRecipe():
     
 @app.route('/RecipesPage/<bread>')
 def getIngredents(bread):
-    breadName, ingredientList, notes = getDBItems(bread)
+    breadName, breadYield, ingredientList, notes = getDBItems(bread)
     return render_template('onebread.html', breadName = breadName, ingredientList = ingredientList,
-                            notes = notes)
+                            notes = notes, breadYield = breadYield)
     
 
 #here to be a thread target
@@ -93,4 +99,4 @@ def startDrawer():
    ProofingDrawer()
 
 if __name__ == '__main__':
-  app.run(debug=True, host='10.0.0.13')
+    app.run(debug=True, host='0.0.0.0')
