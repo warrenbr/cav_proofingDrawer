@@ -17,8 +17,8 @@ $(document).ready(function() {
 	});
 
 	//make the back button go back a page
-	$("#backarrow").click(function() {
-		window.history.back();
+	$("#home-icon").click(function() {
+		window.location.href='/';
 	});
 	
 }); //end of document ready function

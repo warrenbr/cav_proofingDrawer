@@ -1,11 +1,15 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from ProofingDrawer_01 import *
 from threading import Thread
 import json
+from collections import OrderedDict
 import io
 import subprocess
 
 app = Flask(__name__)
+
+fileLocation = 'breadData/breadData.json'
+
 
 @app.route('/')
 def index():
@@ -58,16 +62,16 @@ def setTemp(direction):
 #----Recipie stuff----------
 
 def getDBItems(Thing):
-    fileLocation = 'breadData/breadData.json'
     file = open(fileLocation)
     fileString = file.read()
-    data = json.loads(fileString)
+    data = json.loads(fileString, object_pairs_hook=OrderedDict)
     sendList  = []
 
     if(Thing == 'bName'):
         for breadN in data:
             sendList.append([breadN, data[breadN]["Name"]])
         file.close()
+        # print("pain in the butt json order -------\n {}\n".format(sendList))
         return(sendList)
     else:
         breadDict = data[Thing]
@@ -92,9 +96,85 @@ def getIngredents(bread):
     breadName, breadYield, ingredientList, notes = getDBItems(bread)
     return render_template('onebread.html', breadName = breadName, ingredientList = ingredientList,
                             notes = notes, breadYield = breadYield)
+                            
+@app.route('/RecipesPage/new')
+def newRecipie():
+    return render_template('newbread.html')
     
+@app.route('/RecipesPage/Remove/<number>', methods=['POST'])
+def RemoveBread():
+    file = open(fileLocation)
+    fileString = file.read()
+    data = json.loads(fileString, object_pairs_hook=OrderedDict)
+    number = str(4)
 
-#here to be a thread target
+    del data[number]
+
+    writeJson(data)
+    
+    file.close()
+    return redirect('/RecipesPage')
+    
+@app.route('/RecipesPage/addNew', methods=['POST'])
+def addNew():
+    ingredientName = request.form
+    ingredientPair = []
+
+    for ing in ingredientName:
+        returnIngredient = []
+
+        returnIngredient.append(ing)
+        returnIngredient.append(ingredientName[str(ing)])
+        ingredientPair.append(returnIngredient)
+    returnIngredient = sorted(ingredientPair)
+    
+    ingredents = []
+    notes = []
+    other = []
+    #seperate out the differnt types of inputs (ingredent, yield, name, notes)
+    for x in returnIngredient:
+        if x[0][:2] == "in":
+            ingredents.append(x)
+        elif x[0][:2] == "no":
+             notes.append(x[1])
+        else:
+            other.append(x[1])
+    onlyIngredents = []
+    amountOfIngredents = int(len(ingredents)/2)
+    #arrange the ingredetns so they share the same array
+    for i in range(amountOfIngredents):
+        onlyIngredents.append([ingredents[i+amountOfIngredents][1], float(ingredents[i][1])])
+
+    amountOfBread = str(len(getDBItems("bName")) + 1)
+    
+    newBreadDict = {amountOfBread:{ "Name": other[0],
+                    "breadYield": float(other[1]),
+                    "ingredients": onlyIngredents,
+                    "notes": notes}}
+
+    print(newBreadDict)         
+
+    #write the file
+
+    file = open(fileLocation)
+    fileString = file.read()
+    data = json.loads(fileString, object_pairs_hook=OrderedDict)
+    data.update(newBreadDict)
+
+
+    writeJson(data)
+        
+    file.close()
+    
+    return redirect('/RecipesPage')
+    
+def writeJson(data):
+    with open(fileLocation, 'w') as fp:
+        json.dump(data, fp, sort_keys=True, indent=4)
+    file.close()
+
+
+    #here to be a thread target
 def startDrawer():
    ProofingDrawer()
 

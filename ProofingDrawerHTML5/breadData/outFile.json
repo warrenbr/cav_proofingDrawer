@@ -120,65 +120,29 @@
         ]
     },
     "4": {
-        "Name": "100% Whole Wheat",
-        "breadYield": 2.1,
+        "Name": "White",
+        "breadYield": 3.0,
         "ingredients": [
             [
                 "Water",
+                0.5
+            ],
+            [
+                "Flour",
                 0.6
             ],
             [
-                "Levain",
-                0.1
-            ],
-            [
-                "Honey",
-                0.15
-            ],
-            [
-                "Flour Wheat",
-                1.1
+                "Yeast",
+                0.55
             ],
             [
                 "Salt",
                 0.05
-            ],
-            [
-                "Yeast",
-                0.05
             ]
         ],
         "notes": [
-            "-kneed bread very carefully with a large 7lb rock."
-        ]
-    },
-    "5": {
-        "Name": "Baguette",
-        "breadYield": 1.53,
-        "ingredients": [
-            [
-                "Water",
-                0.61
-            ],
-            [
-                "Levain",
-                0.16
-            ],
-            [
-                "Flour 55",
-                0.82
-            ],
-            [
-                "Salt",
-                0.02
-            ],
-            [
-                "Yeast",
-                0.01
-            ]
-        ],
-        "notes": [
-            "4 min first 6 min second"
+            "Do things with bread very carefully",
+            "Do some more things with the bread that I dont know how to do"
         ]
     }
 }
