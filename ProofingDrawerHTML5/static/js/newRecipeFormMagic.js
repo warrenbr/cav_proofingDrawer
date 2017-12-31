@@ -4,10 +4,10 @@
 
 $(document).ready(function() {
 
-	//variable to hold the number of ingredient fields in the form (starts at 4 because there are 4 in the form)
-	var ingredientCounter = 4;
-	//variable to hold the number of note fields in the form (starts at 2 because there are 2 in the form)
-	var noteCounter = 2;
+	//variable to hold the number of ingredient fields in the form. Initialized to current number of ingredients.
+	var ingredientCounter = $(".form-control.ingredientAmount").length;
+	//variable to hold the number of note fields in the form. Initialized to current number of notes.
+	var noteCounter = $(".form-control.noteBox").length;
 
 	//This adds another ingredient field to the form when the "Add Another Ingredient" button is clicked
 	$("#addIngredient").click(function () {
@@ -35,13 +35,13 @@ $(document).ready(function() {
 		noteCounter++;
 		$("#noteHolder").append(
 				'<div class="row spaced-row" id=noteRow-'+ noteCounter +'>' +
-				'<textarea name="note-'+ noteCounter +'" class="form-control" rows="2"></textarea>' +
+				'<textarea name="note-'+ noteCounter +'" class="form-control noteBox" rows="2"></textarea>' +
 				'</div>'
 		);
 	});
 	
-	//This removes the bottom ingredient when one of the "X" buttons is clicked. It removes the bottom ingredient for
-	//    any of the X buttons so that the numbers in the field ID's stay correct.
+	//This removes the bottom ingredient when the "remove ingredient" button is clicked. It removes the bottom ingredient
+	//    and decrements the counter so that the numbered labels are always accurate.
 	$("#removeIngredient").click(function () {
 		$("#ingredient-"+ingredientCounter).remove();
 		if (ingredientCounter > 0) {

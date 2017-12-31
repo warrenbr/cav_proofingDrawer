@@ -51,7 +51,7 @@ $(document).ready(function() {
 			paused = false;
 			startTime();
 			//send the ajax post request to turn the real light bulb on
-			$.post("/ProofingPage/proofOn");			
+			$.post("/ProofingPage/proofOn");
 		} else { //it's on, so turn it off
 			$("#lightbulb").attr("src", "../static/img/lightbulb-gray.svg");
 			paused = true;

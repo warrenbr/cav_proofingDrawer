@@ -26,7 +26,7 @@ body {
 
 .rectangle {
     border-radius: 25px;
-    width:70%;
+    width:100%;
     background:#A7A9AC;
 	margin-top: 40px;
 	display: block;
@@ -38,7 +38,7 @@ body {
 .buttonText {
 	padding: 5%;
 	text-align: center;
-	font-size: 50pt;
+	font-size: 40pt;
 	font-family: Montserrat;
 	color: #222;
 }
@@ -157,7 +157,7 @@ body {
 }
 
 #lightbulb {
-	position: absolute;
+	position: fixed;
 	left: 44%;
 	bottom: 0%;
 }
@@ -178,7 +178,8 @@ body {
 }
 
 .form-control.lbs-input {
-	width: 40%;
+	width: 170px;
+	font-size: 30pt;
 }
 
 .hiding {
@@ -228,3 +229,11 @@ body {
 	width: 200px;
 	margin-right: 30px;
 }
+
+input[type=number]::-webkit-inner-spin-button { 
+	padding: 15px;
+	height: 50px;
+	position: relative;
+	margin-right: -15px;
+}    
+

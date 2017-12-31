@@ -17,30 +17,15 @@ $(document).ready(function() {
 
 	$("#delete-bread").click(function() {
 		if (breadNumber > 0) {
-
-			//testing thing -- remove later
-			console.log("trying to delete bread: " + breadNumber);
-
-			// $.post("/ProofingPage/remove/"+breadNumber, function(data) {
-			// 	console.log("POST returned data: " + data);
-			// });
-			
-			// commented out because we are changing to POST request -- delete if that works later.
 			$.ajax({
 				url: '/RecipesPage/remove/'+breadNumber,
 				type: 'POST',
 				success: function(result) {
-					// Do nothing with the result, lol
-
-					//testing thing -- remove later
-					// console.log("Result from POST: " + result);
-					location.reload();
+					// Do nothing with the result, just reload the page
+					//location.reload();
+					window.location.replace("/RecipesPage");
 				}
 			});
-
-			//testing thing -- remove later
-			console.log("POST sent to: " + '/RecipesPage/remove/'+breadNumber);
-			
 			breadNumber = -1;
 		}
 	});

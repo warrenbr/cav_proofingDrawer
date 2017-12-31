@@ -23,6 +23,7 @@
 				<input id="lbs-input" class="form-control lbs-input" type="number" min="0" step="0.5" value="{{ breadYield }}" oninput="calculateIngredients();">
 			</div>
 		</div>
+
 		<div class="row">
 			<table class="table" id="bread-table">
 				<tr>
@@ -36,15 +37,18 @@
 				</tr>
 				{% endfor %}
 			</table>
-			<div>
-				<h1 class="recipesHeading">NOTES:</h1>
-			</div>
-			<div class="row" id="notes-section">
-				<ul>
-					{% for note in notes %}
-					<li>{{ note }}</li>
-					{% endfor %}
-				</ul>
+			<div class="container">
+				<div class="row">
+					<h1 class="recipesHeading">NOTES:</h1>
+				</div>
+				<div class="row" id="notes-section">
+					<ul>
+						{% for note in notes %}
+						<li>{{ note }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<br><br>
 			</div>
 			<div class="hiding">
 				{% for ingredient in ingredientList %}

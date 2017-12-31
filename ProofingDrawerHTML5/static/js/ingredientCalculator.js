@@ -21,4 +21,5 @@ function calculateIngredients() {
 		
 		$(this).html(newAmount.toFixed(3));
 	});
+	
 }

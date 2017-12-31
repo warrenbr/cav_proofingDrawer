@@ -61,7 +61,7 @@
 				{% set noteCounter = 1 %}
 				{% for note in notes %}
 				<div class="row spaced-row" id="noteRow-{{noteCounter}}">
-					<textarea name="note-{{noteCounter}}" class="form-control" rows="2">{{note}}</textarea>
+					<textarea name="note-{{noteCounter}}" class="form-control noteBox" rows="2">{{note}}</textarea>
 				</div>
 				{% set noteCounter = noteCounter + 1 %}
 				{% endfor %}

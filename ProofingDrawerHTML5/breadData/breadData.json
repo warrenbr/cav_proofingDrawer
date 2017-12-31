@@ -152,35 +152,6 @@
             "-kneed bread very carefully with a large 7lb rock."
         ]
     },
-    "5": {
-        "Name": "Baguette",
-        "breadYield": 1.53,
-        "ingredients": [
-            [
-                "Water",
-                0.61
-            ],
-            [
-                "Levain",
-                0.16
-            ],
-            [
-                "Flour 55",
-                0.82
-            ],
-            [
-                "Salt",
-                0.02
-            ],
-            [
-                "Yeast",
-                0.01
-            ]
-        ],
-        "notes": [
-            "4 min first 6 min second"
-        ]
-    },
     "6": {
         "Name": "Rye",
         "breadYield": 2.05,
@@ -224,25 +195,62 @@
         ]
     },
     "8": {
-        "Name": "Dirty Socks",
-        "breadYield": 90.0,
+        "Name": "Asiago",
+        "breadYield": 2.05,
         "ingredients": [
             [
-                "ass",
-                10.0
+                "Water",
+                0.6
             ],
             [
-                "sweat",
-                20.0
+                "Levain",
+                0.35
             ],
             [
-                "old beer",
-                50.0
+                "Flour 55",
+                0.45
+            ],
+            [
+                "Flour Turky",
+                0.45
+            ],
+            [
+                "Salt",
+                0.05
+            ],
+            [
+                "Asiago Cheese ",
+                0.15
+            ],
+            [
+                "Parm Cheese",
+                0.2
             ]
         ],
         "notes": [
-            "Really nasty bread",
-            "cus this one is bad"
+            "4 min 1st 6 min sec"
+        ]
+    },
+    "9": {
+        "Name": "used kitchen sponge",
+        "breadYield": 5.0,
+        "ingredients": [
+            [
+                "schmutz",
+                4.0
+            ],
+            [
+                "soap",
+                0.5
+            ],
+            [
+                "gak",
+                0.5
+            ]
+        ],
+        "notes": [
+            "NO DON'T!",
+            "What kind of the day on the road from where you want to go to the bar with it in a bit of sauce."
         ]
     }
 }

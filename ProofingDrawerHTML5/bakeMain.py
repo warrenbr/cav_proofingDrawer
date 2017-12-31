@@ -90,8 +90,9 @@ def writeJson(data):
         json.dump(data, fp, sort_keys=True, indent=4)
     fp.close()
     
-def makeNewBread(ingredientName):
+def makeNewBread(ingredientName, *breadNumber):
     ingredientPair = []
+    amountOfBread = ''
 
     for ing in ingredientName:
         returnIngredient = []
@@ -118,7 +119,15 @@ def makeNewBread(ingredientName):
     for i in range(amountOfIngredents):
         onlyIngredents.append([ingredents[i+amountOfIngredents][1], float(ingredents[i][1])])
 
-    amountOfBread = str(len(getDBItems("bName")) + 1)
+    print("bread number: ".format(breadNumber))
+
+    try:
+        amountOfBread = breadNumber[0]
+        print("bread assigned number {}".format(amountOfBread))
+    except: 
+        DBItems = getDBItems("bName")
+        amountOfBread = sorted(DBItems, reverse=True)
+        amountOfBread = str(int(amountOfBread[0][0]) + 1)
     
     newBreadDict = {amountOfBread:{ "Name": other[0],
                     "breadYield": float(other[1]),
@@ -130,7 +139,9 @@ def makeNewBread(ingredientName):
 @app.route('/RecipesPage')
 def initRecipe():
     breadList = getDBItems("bName")
-    return render_template('recipes.html', breadList = breadList)
+    breadListSort = sorted(breadList, key=lambda x: x[1].upper())
+    print("bread sorted as: {}".format(breadListSort))
+    return render_template('recipes.html', breadList = breadListSort)
     
 @app.route('/RecipesPage/<bread>')
 def getIngredents(bread):
@@ -173,7 +184,7 @@ def editBreadUpdate(breadNumber):
     del data[breadNumber]
     
     dump = request.form
-    newBreadDict = makeNewBread(dump)
+    newBreadDict = makeNewBread(dump, breadNumber)
     
     data.update(newBreadDict)
 
@@ -212,4 +223,4 @@ def startDrawer():
    ProofingDrawer()
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0', threaded=True)#debug=True, host='0.0.0.0')
