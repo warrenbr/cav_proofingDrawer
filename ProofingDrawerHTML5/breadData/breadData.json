@@ -180,5 +180,69 @@
         "notes": [
             "4 min first 6 min second"
         ]
+    },
+    "6": {
+        "Name": "Rye",
+        "breadYield": 2.05,
+        "ingredients": [
+            [
+                "Water",
+                0.7
+            ],
+            [
+                "Levain",
+                0.35
+            ],
+            [
+                "Caramel color",
+                0.05
+            ],
+            [
+                "Flour 55",
+                0.95
+            ],
+            [
+                "Flour White Rye",
+                0.15
+            ],
+            [
+                "Salt",
+                0.05
+            ],
+            [
+                "Yeast",
+                0.05
+            ],
+            [
+                "Ground Caraway",
+                0.05
+            ]
+        ],
+        "notes": [
+            "4 min 1st 5min second",
+            "Place dough in plunger and roll softly around level concrete."
+        ]
+    },
+    "8": {
+        "Name": "Dirty Socks",
+        "breadYield": 90.0,
+        "ingredients": [
+            [
+                "ass",
+                10.0
+            ],
+            [
+                "sweat",
+                20.0
+            ],
+            [
+                "old beer",
+                50.0
+            ]
+        ],
+        "notes": [
+            "Really nasty bread",
+            "cus this one is bad"
+        ]
     }
 }

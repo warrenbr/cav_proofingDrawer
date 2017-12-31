@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit {{ breadName }} Recipe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="../../static/img/cavFaceIco.png">
+		<link rel="icon" type="image/png" href="../../static/img/cavFaceIco.png">
+		<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+		<script src="../../static/js/jquery-3.2.1.min.js"></script>
+		<script src="../../static/js/bootstrap.min.js"></script>
+		<script src="../../static/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="../../static/css/main.css">
+		<script src="../../static/js/navigation.js"></script>
+		<script src="../../static/js/newRecipeFormMagic.js"></script>
+    </head>
+    <body>
+		<h1 class="recipesHeading">EDIT {{ breadName }} RECIPE</h1>
+		<form id="editRecipeForm" method="POST" action="/RecipesPage/edit/{{ breadNumber }}/update" content-type="application/json" id="recipe-form">
+			<div class="row spaced-row">
+				<div class="col-sm-8">
+					<h3><b>BREAD NAME</b></h3>
+					<input name="breadName" class="form-control" type="text" value="{{ breadName }}">
+				</div>
+				<div class="col-sm-4">
+					<h3><b>YIELD (lbs.)</b></h3>
+					<input name="breadYield" class="form-control stupid-damn-form-span" type="number" min="0" step="any" value="{{ breadYield }}">
+				</div>
+				<hr>
+			</div>
+			
+			<div id="ingredients-holder">
+				{% set counter = 1 %}
+				{% for ingredient in ingredientList %}
+				<div class="row spaced-row" id="ingredient-{{counter}}">
+					<div class="col-sm-8">
+						<h3><b>INGREDIENT</b></h3>
+						<input name="ingredientName-{{counter}}" class="form-control ingredientName" type="text" value="{{ingredient[0]}}">
+					</div>
+					<div class="col-sm-4">
+						<div class="row">
+							<h3><b>AMOUNT (lbs.)</b></h3>
+							<span class="stupid-damn-form-span">
+								<input name="ingredientAmount-{{counter}}" class="form-control ingredientAmount" type="number" min="0" step="any" value="{{ingredient[1]}}">
+							</span>
+						</div>
+					</div>
+				</div>
+				{% set counter = counter + 1 %}
+				{% endfor %}
+			</div>
+			<div class="row spaced-row">
+				<button class="btn btn-danger form-control" id="removeIngredient" type="button">Remove Last Ingredient</button>
+			</div>
+			<div class="row spaced-row">
+				<button class="btn btn-success form-control" id="addIngredient" type="button">Add Another Ingredient</button>
+			</div>
+
+			<h1 class="recipesHeading">NOTES:</h1>
+			<div id="noteHolder">
+				{% set noteCounter = 1 %}
+				{% for note in notes %}
+				<div class="row spaced-row" id="noteRow-{{noteCounter}}">
+					<textarea name="note-{{noteCounter}}" class="form-control" rows="2">{{note}}</textarea>
+				</div>
+				{% set noteCounter = noteCounter + 1 %}
+				{% endfor %}
+
+			</div>
+
+			<div class="row spaced-row">
+				<button class="btn btn-danger form-control" id="removeNote" type="button">Remove Last Note</button>
+			</div>
+			<div class="row spaced-row">
+				<button class="btn btn-success form-control" id="addNote" type="button">Add Another Note</button>
+			</div>
+
+			<br><br>
+			<div class="row spaced-row">
+				<div class="col-sm-4">
+					<!-- this is empty on purpose -->
+				</div>
+				<div class="col-sm-8">
+					<button type="submit" value="submit" class="btn btn-info bigger-text">FINISH</button>
+				</div>
+			</div>
+
+		</form>
+		<img src="../../static/img/home-icon.svg" id="home-icon">
+    </body>
+</html>

@@ -71,7 +71,7 @@ def getDBItems(Thing):
         for breadN in data:
             sendList.append([breadN, data[breadN]["Name"]])
         file.close()
-        # print("pain in the butt json order -------\n {}\n".format(sendList))
+        
         return(sendList)
     else:
         breadDict = data[Thing]
@@ -85,39 +85,12 @@ def getDBItems(Thing):
 
         return(name, breadYield, sendList, notes)
 
-        
-@app.route('/RecipesPage')
-def initRecipe():
-    breadList = getDBItems("bName")
-    return render_template('recipes.html', breadList = breadList)
+def writeJson(data):
+    with open(fileLocation, 'w') as fp:
+        json.dump(data, fp, sort_keys=True, indent=4)
+    fp.close()
     
-@app.route('/RecipesPage/<bread>')
-def getIngredents(bread):
-    breadName, breadYield, ingredientList, notes = getDBItems(bread)
-    return render_template('onebread.html', breadName = breadName, ingredientList = ingredientList,
-                            notes = notes, breadYield = breadYield)
-                            
-@app.route('/RecipesPage/new')
-def newRecipie():
-    return render_template('newbread.html')
-    
-@app.route('/RecipesPage/Remove/<number>', methods=['POST'])
-def RemoveBread():
-    file = open(fileLocation)
-    fileString = file.read()
-    data = json.loads(fileString, object_pairs_hook=OrderedDict)
-    number = str(4)
-
-    del data[number]
-
-    writeJson(data)
-    
-    file.close()
-    return redirect('/RecipesPage')
-    
-@app.route('/RecipesPage/addNew', methods=['POST'])
-def addNew():
-    ingredientName = request.form
+def makeNewBread(ingredientName):
     ingredientPair = []
 
     for ing in ingredientName:
@@ -151,6 +124,71 @@ def addNew():
                     "breadYield": float(other[1]),
                     "ingredients": onlyIngredents,
                     "notes": notes}}
+                    
+    return(newBreadDict)
+        
+@app.route('/RecipesPage')
+def initRecipe():
+    breadList = getDBItems("bName")
+    return render_template('recipes.html', breadList = breadList)
+    
+@app.route('/RecipesPage/<bread>')
+def getIngredents(bread):
+    breadName, breadYield, ingredientList, notes = getDBItems(bread)
+    return render_template('onebread.html', breadName = breadName, ingredientList = ingredientList,
+                            notes = notes, breadYield = breadYield)
+                            
+@app.route('/RecipesPage/new')
+def newRecipie():
+    return render_template('newbread.html')
+    
+@app.route('/RecipesPage/remove/<breadNumber>', methods=['POST'])
+def RemoveBread(breadNumber):
+    file = open(fileLocation)
+    fileString = file.read()
+    data = json.loads(fileString, object_pairs_hook=OrderedDict)
+    breadNumber = str(breadNumber)
+
+    del data[breadNumber]
+
+    writeJson(data)
+    
+    file.close()
+    return redirect('/RecipesPage')
+    
+@app.route('/RecipesPage/edit/<breadNumber>', methods=['GET','POST'])
+def editBread(breadNumber):
+    breadName, breadYield, ingredientList, notes = getDBItems(breadNumber)
+    
+    return render_template("editbread.html", breadName = breadName, ingredientList = ingredientList,
+                            notes = notes, breadYield = breadYield, breadNumber = breadNumber)
+                            
+@app.route('/RecipesPage/edit/<breadNumber>/update', methods=['POST'])
+def editBreadUpdate(breadNumber):
+    file = open(fileLocation)
+    fileString = file.read()
+    data = json.loads(fileString, object_pairs_hook=OrderedDict)
+    breadNumber = str(breadNumber)
+    
+    del data[breadNumber]
+    
+    dump = request.form
+    newBreadDict = makeNewBread(dump)
+    
+    data.update(newBreadDict)
+
+
+    writeJson(data)
+        
+    file.close()
+    
+    return redirect('/RecipesPage')
+    
+@app.route('/RecipesPage/addNew', methods=['POST'])
+def addNew():
+    ingredientName = request.form
+    
+    newBreadDict = makeNewBread(ingredientName)
 
     print(newBreadDict)         
 
@@ -168,11 +206,6 @@ def addNew():
     
     return redirect('/RecipesPage')
     
-def writeJson(data):
-    with open(fileLocation, 'w') as fp:
-        json.dump(data, fp, sort_keys=True, indent=4)
-    file.close()
-
 
     #here to be a thread target
 def startDrawer():
